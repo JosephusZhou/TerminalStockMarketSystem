@@ -28,12 +28,14 @@ def main():
 # 菜单
 def menu():
     while True:
-        s = "请选择:\n1. 当前行情\n2. 添加股票\n3. 退出\n"
+        s = "请选择:\n1. 当前行情\n2. 添加股票\n3. 删除股票\n4. 退出\n"
         index = int(input(s))
         if index == 1:
             show_current_market()
         elif index == 2:
             add_new_stock()
+        elif index == 3:
+            del_stock()
         else:
             break
 
@@ -62,6 +64,14 @@ def add_new_stock():
             "shares_held": str(input("请输入持有份额:\n"))}
     db.insert_data(conn, data)
     print(format.format_light_content("添加成功."))
+
+
+# 删除股票
+def del_stock():
+    global conn
+    stock_code = input("请输入股票代码:\n")
+    db.del_data(conn, stock_code)
+    print(format.format_light_content("删除成功."))
 
 
 # 程序入口

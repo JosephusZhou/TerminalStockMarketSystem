@@ -50,3 +50,12 @@ def insert_data(conn, data):
     cursor.execute(sql_str)
     conn.commit()
     cursor.close()
+
+
+# 删除数据
+def del_data(conn, stock_code):
+    cursor = conn.cursor()
+    sql_str = "delete from stock_info where stock_code = '{code}'".format(code=stock_code)
+    cursor.execute(sql_str)
+    conn.commit()
+    cursor.close()
